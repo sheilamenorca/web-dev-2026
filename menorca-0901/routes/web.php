@@ -3,14 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CreateController;
 use App\Http\Controllers\ComputeController;
-
+use App\Http\Controllers\UserController;
 
 Route::get('/', [CreateController::class, 'welcome']);
 Route::get('/sample', [CreateController::class, 'home'])->name('home');
-Route::group(['prefix' => 'user'], function(){
-    Route::get('/{id}', [CreateController::class, 'user']);
-    Route::get('/edit/{id}', [CreateController::class, 'userindex'])->name('userEdit');
-});
+// //Route::group(['prefix' => 'user'], function(){
+//     Route::get('/{id}', [CreateController::class, 'user']);
+//     Route::get('/edit/{id}', [CreateController::class, 'userindex'])->name('userEdit');
+// });
 Route::get('/dashboard', [CreateController::class, 'dashboard']);
 Route::get('/update', [CreateController::class, 'userindex']);
 Route::get('/create', [CreateController::class, 'index']);
@@ -18,6 +18,8 @@ Route::get('/assignment', [CreateController::class, 'assignment']);
 Route::get('/calculate', [CreateController::class, 'calculate']);
 Route::get('/calculate', [ComputeController::class, 'index']);
 Route::post('/calculate', [ComputeController::class, 'compute'])->name('calculate.submit');
+Route::get('/try', [UserController::class, 'addUser']);
+Route::get('/user/all', [UserController::class, 'getAllUsers']);
 Route::fallback([CreateController::class, 'fallback']);
 
 
